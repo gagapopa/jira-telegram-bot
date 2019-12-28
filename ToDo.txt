@@ -1,6 +1,39 @@
 Implement new handlers
     /AddProjectSubscription <PROJECT_NAME>
+    User hasn't authorize in jira
+    Project not found
+    Subscription was added
 
     /RemoveProjectSubscription <PROJECT_NAME>
     /ProjectsSubscriptionList
     /Unsubscribe
+
+User stories:
+user:
+ Пользователь находит и подключает бота
+
+ Пользователь вводит /me и получает telegramId
+
+ Говорит его админу и админ добавляет /add_user <jiraLogin> <telegramId>
+
+ //новые кейсы
+
+ Пользователь после авторизации видит комманду
+    /add_project_subscription <project name>
+    /remove_subscription_for_project <project name>
+    /project_subscriptions_list
+    /unsubscribe
+
+ Пользователь вводит /add_project_subscription <project name>
+    если проекта нет ->  Project not found
+    в случае успеха -> /project_subscriptions_list
+
+ Пользователь может вызвать /remove_subscription_for_project <project name>
+    если проекта нет в подписках -> You don't have subscription for <project name>
+    в случае успеха -> /project_subscriptions_list
+
+ Пользователь может вызвать /project_subscriptions_list
+    выводит список проектов на которые есть подписки
+
+ Пользователь может вызвать /unsubscribe
+    выводит -> Your webhook has been removed

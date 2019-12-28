@@ -9,16 +9,27 @@ import org.springframework.stereotype.Service
 
 @Service
 @ConditionalOnJiraOAuth
-class CreateWebhookTelegramCommandHandler(
+class AddProjectSubscription(
     private val jiraApiService: JiraApiService,
     telegramClient: TelegramClient
-    ): BaseCommandHandler(telegramClient) {
+) : BaseCommandHandler(telegramClient) {
+
+    private val commandPrefix = "/add_project_subscription"
 
     override fun isHandle(command: TelegramCommand): Boolean {
-        return command.isInState(State.INIT) && command.isMatchText("/add_project_subscription")
+        return command.isInState(State.INIT) && command.isMatchText(commandPrefix)
     }
 
     override fun handle(command: TelegramCommand): State {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val id = command.chatId
+        val commandArgs = command.text!!.split(" ")
+        if (commandArgs.size < 2) {
+            telegramClient.sendTextMessage(
+                id,
+                "Wrong command syntax\n Should be: $commandPrefix <projectName>"
+            )
+        }
+
+        return State.INIT
     }
 }

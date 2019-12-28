@@ -29,4 +29,8 @@ class JiraApiService(private val jiraRestClientFactory: JiraRestClientFactory) {
         jiraRestClient.close()
         return issues
     }
+
+    fun createWebHook(telegramId: Long, jiraId: String): Unit {
+
+    }
 }

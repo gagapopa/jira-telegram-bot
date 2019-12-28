@@ -1,0 +1,6 @@
+Implement new handlers
+    /AddProjectSubscription <PROJECT_NAME>
+
+    /RemoveProjectSubscription <PROJECT_NAME>
+    /ProjectsSubscriptionList
+    /Unsubscribe
